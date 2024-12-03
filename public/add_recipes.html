@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Recettes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- En-tête -->
+    <header>
+        <h1>Ajouter une Recette</h1>
+        <a href="index.html">Retour à l'accueil</a>
+    </header>
+
+    <!-- Formulaire d'ajout -->
+    <main>
+        <form id="add-recipe-form">
+            <ul>
+                <li>
+                    <label for="title">Titre de la recette :</label>
+                    <input type="text" id="title" name="title" placeholder="Titre de la recette" required>
+                </li>
+                <li>
+                    <label for="description">Description :</label>
+                    <textarea id="description" name="description" placeholder="Description de la recette"
+                        required></textarea>
+                </li>
+                <li>
+                    <label for="ingredients">Ingrédients :</label>
+                    <textarea id="ingredients" name="ingredients" placeholder="Liste des ingrédients"
+                        required></textarea>
+                </li>
+                <li>
+                    <label for="steps">Étapes de préparation :</label>
+                    <textarea id="steps" name="steps" placeholder="Étapes de préparation" required></textarea>
+                </li>
+                <li>
+                    <label for="duration">Durée (minutes) :</label>
+                    <input type="number" id="duration" name="duration" placeholder="Durée en minutes" required>
+                </li>
+                <li>
+                    <label for="difficulty">Difficulté :</label>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="Facile">Facile</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Difficile">Difficile</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="category">Catégorie :</label>
+                    <select id="category" name="category" required>
+                        <option value="Entrée">Entrée</option>
+                        <option value="Plat">Plat</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                </li>
+                <li>
+                    <button type="submit">Ajouter la recette</button>
+                </li>
+            </ul>
+        </form>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2024 Marmiton Simplifié - Tous droits réservés</p>
+    </footer>
+
+    <script src="js/ajouter_recettes.js"></script>
+</body>
+
+</html>
