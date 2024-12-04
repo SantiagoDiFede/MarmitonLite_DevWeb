@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const recipesRoutes = require('./recipes');
-const usersRoutes = require('./users');
+const recipesRoutes = require('../server/recipes');
+const usersRoutes = require('../server/users');
 
 const app = express();
 const PORT = 3000;
