@@ -1,72 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Profil</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
 
-  <body>
-    <!-- En-tête -->
-    <header>
-      <h1>Mon Profil</h1>
-      <a href="index.html">Retour à l'accueil</a>
-    </header>
-    Dupont
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Profil</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-    <!-- Contenu principal -->
-    <main>
-      <!-- Section de connexion ou inscription -->
-      <section id="auth-section">
-        <h2>Bienvenue</h2>
-        <p>
-          Veuillez vous connecter ou vous inscrire pour accéder à votre profil.
-        </p>
-        <button id="login-btn">Se connecter</button>
-        <button id="signup-btn">S'inscrire</button>
-      </section>
+<body>
+  <!-- En-tête -->
+  <header>
+    <h1>Mon Profil</h1>
+    <a href="index.html">Retour à l'accueil</a>
+  </header>
+  Dupont
 
-      <!-- Section du profil utilisateur -->
-      <section id="profile-overview" class="hidden">
-        <img
-          id="profile-picture"
-          src="default-avatar.png"
-          alt="Photo de profil"
-        />
-        <h2 id="profile-name"></h2>
-        <p id="profile-email"></p>
-        <button id="edit-profile-btn">Modifier mon profil</button>
-        <button id="delete-profile-btn" class="danger">
-          Supprimer mon profil
-        </button>
-      </section>
+  <!-- Contenu principal -->
+  <main>
+    <!-- Section de connexion ou inscription -->
+    <section id="auth-section">
+      <h2>Bienvenue</h2>
+      <p>
+        Veuillez vous connecter ou vous inscrire pour accéder à votre profil.
+      </p>
+      <button id="login-btn">Se connecter</button>
+      <button id="signup-btn">S'inscrire</button>
+    </section>
 
-      <!-- Formulaire de modification -->
-      <section id="edit-profile-form-section" class="hidden">
-        <form id="edit-profile-form">
-          <label for="name">Nom :</label>
-          <input type="text" id="name" name="name" required />
+    <!-- Section du profil utilisateur -->
+    <section id="profile-overview" class="hidden">
+      <img id="profile-picture" src="default-avatar.png" alt="Photo de profil" />
+      <h2 id="profile-name"></h2>
+      <p id="profile-email"></p>
+      <button id="edit-profile-btn">Modifier mon profil</button>
+      <button id="delete-profile-btn" class="danger">
+        Supprimer mon profil
+      </button>
+    </section>
 
-          <label for="email">Email :</label>
-          <input type="email" id="email" name="email" required />
+    <!-- Formulaire de modification -->
+    <section id="edit-profile-form-section" class="hidden">
+      <form id="edit-profile-form">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required />
 
-          <label for="password">Mot de passe :</label>
-          <input type="password" id="password" name="password" required />
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required />
 
-          <label for="profile-picture-upload">Photo de profil :</label>
-          <input type="file" id="profile-picture-upload" accept="image/*" />
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required />
 
-          <button type="submit">Enregistrer les modifications</button>
-        </form>
-      </section>
-    </main>
+        <label for="profile-picture-upload">Photo de profil :</label>
+        <input type="file" id="profile-picture-upload" accept="image/*" />
 
-    <!-- Pied de page -->
-    <footer>
-      <p>© 2024 Marmiton Simplifié - Tous droits réservés</p>
-    </footer>
+        <button type="submit">Enregistrer les modifications</button>
+      </form>
+    </section>
+  </main>
 
-    <script src="mon_profile.js"></script>
-  </body>
+  <!-- Pied de page -->
+  <footer>
+    <p>© 2024 Marmiton Simplifié - Tous droits réservés</p>
+  </footer>
+
+  <script src="../server/mon_profile.js"></script>
+</body>
+
 </html>
