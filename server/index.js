@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const cors = require('cors');
 
-const recipesRoutes = require('./add_recipes');
-const usersRoutes = require('./inscription');
-const loginRoutes = require('./login');     
+const recipesRoutes = require('./add_recipes'); // Import des routes pour les recettes
+const inscriptionRoutes = require('./inscription');
+const connexionRoutes = require('./connexion');
 
 
 const app = express();
@@ -39,6 +40,16 @@ app.use(cors(corsOptions));
 app.use('/api/recipes', recipesRoutes);
 app.use('/api/login', loginRoutes);    
     
+app.use(cors({
+    origin: 'http://127.0.0.1:5501', // Origine du frontend
+    credentials: true,              // Si vous utilisez des cookies ou sessions
+}));
+
+// Routes
+app.use('/api/recipes', recipesRoutes);
+app.use('/api/inscription', inscriptionRoutes);
+app.use('/api/connexion', connexionRoutes);
+
 // Gestion des erreurs
 app.use((err, req, res, next) => {
     console.error(err.stack);

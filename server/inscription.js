@@ -1,37 +1,37 @@
-const pool = require('./db'); // Connexion à la base de données
 const express = require('express');
 const router = express.Router();
+const pool = require('./db'); // Connexion à PostgreSQL
 
+// Route d'inscription
+router.post('/', async (req, res) => {
+    const { nom, prenom, email, password } = req.body;
 
-// Fonction pour ajouter un nouvel utilisateur
-const addUser = async (nom,prenom, email, password) => {
-    try {
-        const query = `
-            INSERT INTO marmiton.utilisateur (nom, prenom, email, password, created_at)
-            VALUES ($1, $2, $3, $4)
-            RETURNING *`;
-        const values = [nom,prenom, email, password];
-        const result = await pool.query(query, values);
-        return result.rows[0]; // Retourne l'utilisateur nouvellement créé
-    } catch (error) {
-        console.error('Erreur lors de l\'ajout d\'un utilisateur :', error);
-        throw error;
+    if (!nom || !prenom || !email || !password) {
+        return res.status(400).json({ error: 'Tous les champs sont requis.' });
     }
-};
 
-// Fonction pour vérifier si un utilisateur existe déjà (par email)
-const checkUserExists = async (email) => {
     try {
-        const query = 'SELECT * FROM marmiton.users WHERE email = $1';
-        const result = await pool.query(query, [email]);
-        return result.rows.length > 0; // Retourne true si l'utilisateur existe
-    } catch (error) {
-        console.error('Erreur lors de la vérification de l\'utilisateur :', error);
-        throw error;
-    }
-};
+        // Vérifier si l'email existe déjà
+        const userExistsQuery = 'SELECT * FROM marmitton.utilisateur WHERE email = $1';
+        const userExists = await pool.query(userExistsQuery, [email]);
 
-module.exports = {
-    addUser,
-    checkUserExists,
-};
+        if (userExists.rows.length > 0) {
+            return res.status(400).json({ error: 'Cet email est déjà utilisé.' });
+        }
+
+        // Ajouter le nouvel utilisateur
+        const addUserQuery = `
+    INSERT INTO marmitton.utilisateur (nom, prenom, email, password)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;
+`;
+        const newUser = await pool.query(addUserQuery, [nom, prenom, email, password]);
+
+        res.status(201).json({ message: 'Inscription réussie.', user: newUser.rows[0] });
+    } catch (error) {
+        console.error('Erreur lors de l\'inscription :', error);
+        res.status(500).json({ error: 'Erreur interne du serveur.' });
+    }
+});
+
+module.exports = router;

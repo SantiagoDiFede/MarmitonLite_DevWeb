@@ -9,19 +9,21 @@
 </head>
 
 <body>
-    <!-- En-tête -->
     <header>
         <h1>Inscription</h1>
         <a href="index.html">Retour à l'accueil</a>
     </header>
 
-    <!-- Formulaire d'inscription -->
     <main>
         <form id="signup-form">
             <ul>
                 <li>
-                    <label for="name">Nom :</label>
-                    <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                </li>
+                <li>
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
                 </li>
                 <li>
                     <label for="email">Email :</label>
@@ -43,12 +45,11 @@
         </form>
     </main>
 
-    <!-- Pied de page -->
     <footer>
         <p>© 2024 Marmiton Simplifié - Tous droits réservés</p>
     </footer>
 
-    <script src="../server/inscription.js"></script>
+    <script src="inscription.js"></script>
 </body>
 
 </html>
