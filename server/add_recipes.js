@@ -10,6 +10,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+//Route : Récupérer les recettes et les utilisateurs créateurs
+app.get('/api/recettesAndUsers', async (req, res) => {
+    try {
+        const query = 'SELECT * from marmiton.recettes JOIN marmiton.utilisateur ON marmiton.recettes.id_utilisateur = marmiton.utilisateur.id_utilisateur';
+        const result = await pool.query(query);
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erreur lors de la récupération de la recette' });
+    }
+});
+
 // Route : Ajouter une nouvelle recette
 router.post('/', async (req, res) => {
     const { title, description, ingredients, steps, duration, difficulty, category, user_id } = req.body;

@@ -4,10 +4,10 @@ const pool = require('./db'); // Connexion à la base de données
 const addUser = async (name, email, password) => {
     try {
         const query = `
-            INSERT INTO marmiton.users (name, email, password, created_at)
-            VALUES ($1, $2, $3, NOW())
+            INSERT INTO marmiton.utilisateur (nom, prenom, email, password, created_at)
+            VALUES ($1, $2, $3, $4)
             RETURNING *`;
-        const values = [name, email, password];
+        const values = [nom,prenom, email, password];
         const result = await pool.query(query, values);
         return result.rows[0]; // Retourne l'utilisateur nouvellement créé
     } catch (error) {
