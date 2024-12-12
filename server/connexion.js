@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('./db'); // Connexion à la base PostgreSQL
+const cookieParser = require('cookie-parser');
 
 // Route pour connecter un utilisateur
 router.post('/', async (req, res) => {
@@ -19,14 +20,8 @@ router.post('/', async (req, res) => {
             return res.status(401).json({ error: 'Identifiants incorrects.' });
         }
 
-        // Créer une session utilisateur après la connexion
-        req.session.user = {
-            id: userResult.rows[0].id_utilisateur,
-            nom: userResult.rows[0].nom,
-            email: userResult.rows[0].email,
-        };
-
-        res.status(200).json({ message: 'Connexion réussie.', user: req.session.user });
+        const user = userResult.rows[0];
+        return res.status(200).json({ message: 'Connexion réussie.', user: user });
     } catch (error) {
         console.error('Erreur lors de la connexion :', error);
         res.status(500).json({ error: 'Erreur interne du serveur.' });
