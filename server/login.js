@@ -29,7 +29,9 @@ router.post('/', async (req, res) => {
 
         // Connexion réussie
         res.status(200).json({ message: 'Connexion réussie.', user });
+        res.cookie('user', user.id, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
     } catch (error) {
+
         console.error('Erreur lors de la connexion :', error);
         res.status(500).json({ error: 'Erreur interne du serveur.' });
     }
