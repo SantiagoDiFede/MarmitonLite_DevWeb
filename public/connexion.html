@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- En-tête -->
+    <header>
+        <h1>Connexion</h1>
+        <a href="index.html">Retour à l'accueil</a>
+    </header>
+
+    <!-- Formulaire de connexion -->
+    <main>
+        <form id="login-form">
+            <ul>
+                <li>
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" placeholder="Votre email" required>
+                </li>
+                <li>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+                </li>
+                <li>
+                    <button type="submit">Se connecter</button>
+                </li>
+            </ul>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Erreur : Les informations sont incorrectes.</p>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2024 Marmiton Simplifié - Tous droits réservés</p>
+    </footer>
+
+    <script src="connexion.js"></script>
+</body>
+
+</html>
