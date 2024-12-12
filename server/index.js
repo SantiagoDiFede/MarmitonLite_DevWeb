@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const cors = require('cors');
 
-const recipesRoutes = require('./add_recipes');
+const recipesRoutes = require('./add_recipes'); // Import des routes pour les recettes
 const inscriptionRoutes = require('./inscription');
 const connexionRoutes = require('./connexion');
 
