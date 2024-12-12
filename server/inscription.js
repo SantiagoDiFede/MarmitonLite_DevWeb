@@ -1,7 +1,10 @@
 const pool = require('./db'); // Connexion à la base de données
+const express = require('express');
+const router = express.Router();
+
 
 // Fonction pour ajouter un nouvel utilisateur
-const addUser = async (name, email, password) => {
+const addUser = async (nom,prenom, email, password) => {
     try {
         const query = `
             INSERT INTO marmiton.utilisateur (nom, prenom, email, password, created_at)

@@ -1,4 +1,7 @@
 const pool = require('./db');
+const express = require('express');
+const app = express();
+const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
@@ -11,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 //Route : Récupérer les recettes et les utilisateurs créateurs
-app.get('/api/recettesAndUsers', async (req, res) => {
+router.get('/recettesAndUsers', async (req, res) => {
     try {
         const query = 'SELECT * from marmiton.recettes JOIN marmiton.utilisateur ON marmiton.recettes.id_utilisateur = marmiton.utilisateur.id_utilisateur';
         const result = await pool.query(query);

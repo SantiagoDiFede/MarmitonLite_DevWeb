@@ -7,17 +7,19 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
     try {
         // Appel à l'API backend pour se connecter
-        const response = await fetch('/api/login', {
+        const response = await fetch('http://localhost:3000/api/login/connect', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password}),
+            credentials: 'include',
         });
 
         if (response.ok) {
             const result = await response.json();
             alert('Connexion réussie.');
+            console.log('Utilisateur connecté :', result.user);
             // Stocker les informations utilisateur dans le stockage local (facultatif)
             localStorage.setItem('user', JSON.stringify(result.user));
             // Rediriger vers la page du profil

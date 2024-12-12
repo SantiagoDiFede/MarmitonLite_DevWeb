@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('./db'); // Connexion à PostgreSQL
 
 // Route pour connecter un utilisateur
-router.post('/', async (req, res) => {
+router.post('/connect', async (req, res) => {
     const { email, password } = req.body;
 
     // Vérification des champs requis
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 
     try {
         // Recherche de l'utilisateur dans la base de données
-        const query = 'SELECT * FROM Utilisateur WHERE email = $1';
+        const query = 'SELECT * FROM marmiton.utilisateur WHERE email = $1';
         const result = await pool.query(query, [email]);
 
         if (result.rows.length === 0) {
@@ -28,8 +28,12 @@ router.post('/', async (req, res) => {
         }
 
         // Connexion réussie
-        res.status(200).json({ message: 'Connexion réussie.', user });
-        res.cookie('user', user.id, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+        
+        res.cookie('user', user.email, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true,path: '/',sameSite: 'none',partitioned: true,secure: true});
+        
+        
+        return res.status(200).json({ message: 'Connexion réussie.', user });
+        
     } catch (error) {
 
         console.error('Erreur lors de la connexion :', error);
