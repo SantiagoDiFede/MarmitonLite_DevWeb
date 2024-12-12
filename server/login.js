@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db'); // Connexion à la base de données
+const pool = require('./db'); // Connexion à PostgreSQL
 
 // Route pour connecter un utilisateur
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
 
-    // Vérification des champs
+    // Vérification des champs requis
     if (!email || !password) {
         return res.status(400).json({ error: 'Tous les champs sont requis.' });
     }
 
     try {
-        // Rechercher l'utilisateur par email
+        // Recherche de l'utilisateur dans la base de données
         const query = 'SELECT * FROM Utilisateur WHERE email = $1';
         const result = await pool.query(query, [email]);
 
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 
         const user = result.rows[0];
 
-        // Vérifier le mot de passe (en production, utilisez un hash comme bcrypt)
+        // Vérification du mot de passe
         if (user.password !== password) {
             return res.status(401).json({ error: 'Mot de passe incorrect.' });
         }

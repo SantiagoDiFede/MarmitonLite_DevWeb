@@ -4,6 +4,8 @@ const cors = require('cors');
 
 const recipesRoutes = require('./add_recipes');
 const usersRoutes = require('./inscription');
+const loginRoutes = require('./login');     
+
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +18,8 @@ app.use(cors());
 // Routes
 app.use('/api/recipes', recipesRoutes);
 app.use('/api/users', usersRoutes);
-
+app.use('/api/login', loginRoutes);    
+    
 // Gestion des erreurs
 app.use((err, req, res, next) => {
     console.error(err.stack);
