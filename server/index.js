@@ -37,8 +37,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Routes
-app.use('/api/recipes', recipesRoutes);
-app.use('/api/login', loginRoutes);    
+app.use('/api/recipes', recipesRoutes); 
     
 app.use(cors({
     origin: 'http://127.0.0.1:5501', // Origine du frontend
