@@ -16,10 +16,13 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5501', // Origine du frontend
+    credentials: true,              // Si vous utilisez des cookies ou sessions
+}));
 app.use(
     session({
-        secret: 'votre_secret', // Remplacez par une clé secrète sécurisée
+        secret: 'votre_clé_secrète', // Remplacez par une clé sécurisée
         resave: false,
         saveUninitialized: true,
     })
