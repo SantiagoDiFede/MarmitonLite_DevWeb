@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 3000;
-
+const cors = require('cors');
 // Middleware
 
 app.use(bodyParser.json());
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");  
     res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5501");  
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');  
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');  
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");  
 
     if (req.method === 'OPTIONS') {
@@ -29,7 +29,9 @@ app.use((req, res, next) => {
 
 
 
-// Routes
+
+
+
 const recipesRoutes = require('./add_recipes'); // Import des routes pour les recettes
 const inscriptionRoutes = require('./inscription');
 const connexionRoutes = require('./connexion');

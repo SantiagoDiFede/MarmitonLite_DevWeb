@@ -25,6 +25,9 @@ async function chargerRecettes() {
                 <td>${recette.nom}  ${recette.prenom}</td>
                 
             `;
+            tr.onclick = () => {
+                window.location.href = `recipe.html?id=${recette.id_recette}`;
+            }
       tableBody.appendChild(tr);
     });
   } catch (error) {
@@ -32,9 +35,19 @@ async function chargerRecettes() {
   }
 }
 
+function logOut() {
+    document.cookie = document.cookie + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    
+}
+
+// Add event listener to the <li> element
+document.getElementById('logout').addEventListener('click', () => {
+    logOut();
+    alert('Vous êtes déconnecté');	
+});
+
 //window on load
 window.onload = () => {
-<<<<<<< Updated upstream
     chargerRecettes();
     if(document.cookie){
         document.getElementById('login').style.display = 'none';
@@ -50,7 +63,3 @@ window.onload = () => {
         document.getElementById('addRecipe').style.display = 'none';
     }
 }
-=======
-  chargerRecettes();
-};
->>>>>>> Stashed changes
