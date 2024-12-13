@@ -35,9 +35,12 @@ app.use((req, res, next) => {
 const recipesRoutes = require('./add_recipes'); // Import des routes pour les recettes
 const inscriptionRoutes = require('./inscription');
 const connexionRoutes = require('./connexion');
+const profileRoutes = require('./mon_profile');
 app.use('/api/recipes', recipesRoutes);
 app.use('/api/inscription', inscriptionRoutes);
 app.use('/api/connexion', connexionRoutes);
+app.use('/api/profil', profileRoutes);
+
 
 
 // Gestion des erreurs

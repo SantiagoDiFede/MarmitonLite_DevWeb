@@ -46,6 +46,11 @@ document.getElementById('logout').addEventListener('click', () => {
     alert('Vous êtes déconnecté');	
 });
 
+document.getElementById('profile').addEventListener('click', () => {
+    window.location.href = 'mon_profil.html?id=' + document.cookie.split('=')[1];
+}
+);
+
 //window on load
 window.onload = () => {
     chargerRecettes();

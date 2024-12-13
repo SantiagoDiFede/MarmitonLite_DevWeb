@@ -26,6 +26,25 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/recette/:id", async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    
+    try {
+        const result = await pool.query('SELECT * FROM marmiton.recettes WHERE id_utilisateur = $1', [id]);
+    
+        if (result.rows.length === 0) {
+        return res.status(404).json({ error: "Recette non trouvée." });
+        }
+    
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error("Erreur lors de la récupération de la recette :", err);
+        res.status(500).json({ error: "Erreur interne du serveur." });
+    }
+    });
+
+
 //Route : Récupérer les recettes et les utilisateurs créateurs
 router.get("/recettesAndUsers", async (req, res) => {
   try {
