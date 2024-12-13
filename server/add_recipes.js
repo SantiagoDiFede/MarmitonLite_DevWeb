@@ -26,20 +26,22 @@ router.get('/recettesAndUsers', async (req, res) => {
 });
 
 // Route : Ajouter une nouvelle recette
-router.post('/', async (req, res) => {
-    const { title, description, ingredients, steps, duration, difficulty, category, user_id } = req.body;
+router.post('/addRecipe', async (req, res) => {
+    console.log(req.body);
+    console.log(res.headers);
+    const { title, description, ingredients, steps, duration, category, user_id } = req.body;
 
-    if (!title || !description || !ingredients || !steps || !duration || !difficulty || !category || !user_id) {
+    if (!title || !description || !ingredients || !steps || !duration || !category || !user_id) {
         return res.status(400).json({ error: 'Tous les champs sont requis.' });
     }
 
     try {
         const query = `
-            INSERT INTO marmiton.recettes (titre, ingredient, description, stop, duree, id_difficulte, id_category, id_utilisateur)
+            INSERT INTO marmiton.recettes (titre, ingredient, description, stop, duree, id_utilisateur,id_category )
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING *;
         `;
-        const values = [title, ingredients, description, steps, duration, difficulty, category, user_id];
+        const values = [title, ingredients, description, steps, duration, category, user_id];
         const result = await pool.query(query, values);
 
         res.status(201).json({ message: 'Recette ajoutée avec succès.', recipe: result.rows[0] });

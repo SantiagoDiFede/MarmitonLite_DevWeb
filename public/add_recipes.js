@@ -7,9 +7,9 @@ document.getElementById('add-recipe-form').addEventListener('submit', async (eve
     const ingredients = document.getElementById('ingredients').value;
     const steps = document.getElementById('steps').value;
     const duration = document.getElementById('duration').value;
-    const difficulty = document.getElementById('difficulty').value;
     const category = document.getElementById('category').value;
-    const user_id = localStorage.getItem('user_id'); // Stockez l'ID utilisateur après connexion
+    const user_id = document.cookie; 
+    console.log(user_id);
 
     if (!user_id) {
         alert("Vous devez être connecté pour ajouter une recette.");
@@ -18,12 +18,11 @@ document.getElementById('add-recipe-form').addEventListener('submit', async (eve
 
     try {
         // Envoyer une requête POST à l'API
-        const response = await fetch('/api/recipes', {
+        const response = await fetch('/api/recipes/addRecipe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, description, ingredients, steps, duration, difficulty, category, user_id }),
+            body: JSON.stringify({ title, description, ingredients, steps, duration,category, user_id }),
         });
-
         if (response.ok) {
             const result = await response.json();
             alert(result.message);
