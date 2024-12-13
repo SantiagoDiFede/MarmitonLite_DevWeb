@@ -41,7 +41,7 @@ app.use('/api/inscription', inscriptionRoutes);
 app.use('/api/connexion', connexionRoutes);
 app.use('/api/profil', profileRoutes);
 
-
+// /api/recipes/recette/:id
 
 // Gestion des erreurs
 app.use((err, req, res, next) => {

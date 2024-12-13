@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
     try {
         // Vérifier si l'email existe déjà
-        const userExistsQuery = 'SELECT * FROM marmitton.utilisateur WHERE email = $1';
+        const userExistsQuery = 'SELECT * FROM marmiton.utilisateur WHERE email = $1';
         const userExists = await pool.query(userExistsQuery, [email]);
 
         if (userExists.rows.length > 0) {
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
         // Ajouter le nouvel utilisateur
         const addUserQuery = `
-    INSERT INTO marmitton.utilisateur (nom, prenom, email, password)
+    INSERT INTO marmiton.utilisateur (nom, prenom, email, password)
     VALUES ($1, $2, $3, $4)
     RETURNING *;
 `;

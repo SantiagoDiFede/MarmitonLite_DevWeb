@@ -24,7 +24,7 @@ document
             alert('Connexion réussie.');
             console.log('Utilisateur connecté :', result.user);
             document.cookie = 'userId=' + result.user.id_utilisateur;
-            window.location.href = 'mon_profil.html';
+            window.location.href = 'index.html';
         } else {
             const error = await response.json();
             document.getElementById('error-message').textContent = `Erreur : ${error.error}`;
