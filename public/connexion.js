@@ -1,11 +1,14 @@
-document.getElementById('login-form').addEventListener('submit', async (event) => {
+document
+  .getElementById("login-form")
+  .addEventListener("submit", async (event) => {
     event.preventDefault(); // Empêche le rechargement de la page
 
     // Récupération des données du formulaire
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     try {
+<<<<<<< Updated upstream
         // Appel à l'API backend pour se connecter
         const response = await fetch('http://localhost:3000/api/connexion/', {
             method: 'POST',
@@ -28,8 +31,35 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
             document.getElementById('error-message').textContent = `Erreur : ${error.error}`;
             document.getElementById('error-message').style.display = 'block';
         }
+=======
+      // Appel à l'API backend pour se connecter
+      const response = await fetch("http://localhost:3000/api/login/connect", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert("Connexion réussie.");
+        console.log("Utilisateur connecté :", result.user);
+        // Stocker les informations utilisateur dans le stockage local (facultatif)
+        localStorage.setItem("user", JSON.stringify(result.user));
+        // Rediriger vers la page du profil
+        window.location.href = "mon_profil.html";
+      } else {
+        const error = await response.json();
+        document.getElementById(
+          "error-message"
+        ).textContent = `Erreur : ${error.error}`;
+        document.getElementById("error-message").style.display = "block";
+      }
+>>>>>>> Stashed changes
     } catch (error) {
-        console.error('Erreur lors de la connexion :', error);
-        alert('Une erreur est survenue. Veuillez réessayer.');
+      console.error("Erreur lors de la connexion :", error);
+      alert("Une erreur est survenue. Veuillez réessayer.");
     }
-});
+  });

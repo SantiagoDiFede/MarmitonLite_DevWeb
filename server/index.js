@@ -40,11 +40,11 @@ app.use('/api/connexion', connexionRoutes);
 
 // Gestion des erreurs
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ error: 'Une erreur interne est survenue.' });
+  console.error(err.stack);
+  res.status(500).json({ error: "Une erreur interne est survenue." });
 });
 
 // Lancer le serveur
 app.listen(PORT, () => {
-    console.log(`Serveur lancé sur http://localhost:${PORT}`);
+  console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
